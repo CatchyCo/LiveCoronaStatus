@@ -31,7 +31,7 @@ export class LiveDataServiceService {
               totalConfirmCase: +col[7],
               totalDeath: +col[8],
               totalRecover: +col[9],
-              active: +col[9]
+              active: +col[10]
             }
             let temp: GlobalData = raw[cs.countryName];
             if (temp) {

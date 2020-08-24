@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col home-data">
             <h5>Total Cases </h5>
-            <span > {{ totalConfirmCase}} </span>
+            <span> {{ totalConfirmCase}} </span>
         </div>
         <div class="col home-data">
             <h5>Total Death</h5>
@@ -17,5 +17,15 @@
             <h5>Total Recovered</h5>
             <span>{{totalRecovered}} </span>
         </div>
+        <div class="col home-data">
+            <h5>Total Active </h5>
+            <span>{{ totalActive }} </span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <google-chart [data]="pieChart"></google-chart>
     </div>
 </div>

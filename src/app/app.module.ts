@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './Component/home/home.component';
 import { CountriesComponent } from './Component/countries/countries.component';
 import { HttpClientModule } from '@angular/common/http';
+import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    Ng2GoogleChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
