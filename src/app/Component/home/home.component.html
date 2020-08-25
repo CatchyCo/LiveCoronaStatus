@@ -24,8 +24,40 @@
     </div>
 </div>
 
+<div class="container">
+    <h3>Select the following</h3>
+</div>
+
+<div class="container radio-aline">
+    <div class="form-check">
+        <label class="form-check-label">
+            <input type="radio" #radio (click)="updateChart(radio.value)" value="Active" class="form-check-input"
+                name="optradio">Active
+        </label>
+    </div>
+    <div class="form-check">
+        <label class="form-check-label">
+            <input type="radio" class="form-check-input" #radio1 (click)="updateChart(radio1.value)" value="Death"
+                name="optradio">Deaths
+        </label>
+    </div>
+    <div class="form-check disabled">
+        <label class="form-check-label">
+            <input type="radio" class="form-check-input" #radio2 (click)="updateChart(radio2.value)" value="Recovered"
+                name="optradio">Recoverd
+        </label>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-6">
-    
+        <google-chart [type]="chart.pieChart" [height]="chart.height" [options]="chart.options" style="width: 100%;"
+            [data]="datatable">
+        </google-chart>
+    </div>
+    <div class="col-6">
+        <google-chart [type]="chart.columnChart" style="width: 100%;" [options]="chart.options" [height]="chart.height"
+            [data]="datatable2">
+        </google-chart>
     </div>
 </div>

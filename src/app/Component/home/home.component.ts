@@ -13,8 +13,20 @@ export class HomeComponent implements OnInit {
   totalRecovered = 0;
   totalActive = 0;
   globalData;
-  dataGraph = [];
-  count = 0;
+  datatable = [];
+  datatable2 = [];
+  colGraph = [];
+  chart = {
+    pieChart: 'PieChart',
+    columnChart: 'ColumnChart',
+    height: 500,
+    options: {
+      animation: {
+        duration: 500,
+        easing: 'in',
+      },
+    }
+  }
 
   constructor(public liveDataService: LiveDataServiceService) { }
   ngOnInit(): void {
@@ -30,20 +42,53 @@ export class HomeComponent implements OnInit {
               this.totalActive = this.totalActive + country['active'];
             }
           })
-          this.initChart();
+          this.initChart("Confirm");
         }
       });
   }
 
-  initChart() {
-    //  this.dataGraph.push(['Country', 'Confirm']);
-    this.globalData.forEach(row => {
-      if (row.totalConfirmCase) {
-        this.dataGraph.push([row.countryName, row.totalConfirmCase])
-      }
-    });
-    console.log(this.dataGraph);
+  initChart(caseType: string) {
+
+    this.datatable = [];
+    this.datatable2 = [];
+    // this.datatable.push(["Country", "Cases"])
+
+    this.globalData.forEach(cs => {
+      let value: number;
+      console.log(cs);
+      if (caseType == 'Confirm')
+        if (cs.totalConfirmCase > 2000)
+          value = cs.totalConfirmCase
+
+      if (caseType == 'Active')
+        if (cs.active > 2000)
+          value = cs.active
+      if (caseType == 'Death')
+        if (cs.totalDeath > 1000)
+          value = cs.totalDeath
+
+      if (caseType == 'Recovered')
+        if (cs.totalRecover > 2000)
+          value = cs.totalRecover
+
+      this.datatable.push([
+        cs.countryName, value
+      ])
+
+      this.datatable2.push([
+        cs.countryName, value
+      ])
+
+    })
+    console.log(this.datatable);
+
+  }
+  updateChart(value) {
+    this.initChart(value);
   }
 
+
 }
+
+
 
