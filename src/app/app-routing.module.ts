@@ -6,6 +6,7 @@ import { CountriesComponent } from './Component/countries/countries.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'countries', component: CountriesComponent }
 ];
 

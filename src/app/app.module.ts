@@ -5,7 +5,9 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './Component/home/home.component';
 import { CountriesComponent } from './Component/countries/countries.component';
 import { HttpClientModule } from '@angular/common/http';
-import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { GoogleChartsModule } from 'angular-google-charts';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -17,9 +19,11 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    Ng2GoogleChartsModule,
+    GoogleChartsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

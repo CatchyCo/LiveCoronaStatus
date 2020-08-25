@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { GlobalData } from '../global-data';
 import { global } from '@angular/compiler/src/util';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -13,8 +14,7 @@ export class LiveDataServiceService {
   globalDataURL = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/08-23-2020.csv';
   row = {};
   constructor(public http: HttpClient) { }
-
-  getGlobalData() {
+  getGlobalData(): Observable<any> {
     return this.http.get(this.globalDataURL, { responseType: 'text' }).pipe(
 
       map(result => {

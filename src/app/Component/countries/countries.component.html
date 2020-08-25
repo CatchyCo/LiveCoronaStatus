@@ -1,1 +1,34 @@
-<p>countries works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2>Counrty wise Data</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-5 mx-auto">
+            <div class="formgroup">
+                <select name="" id="" #input class="form-control" (change)="updateValue(input.value)">
+                    <option value="{{country}}" *ngFor="let country of countrie"> {{country}} </option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col home-data">
+            <h5>Total Cases </h5>
+            <span> {{ totalConfirmCase}} </span>
+        </div>
+        <div class="col home-data">
+            <h5>Total Death</h5>
+            <span>{{totalDeathCases}} </span>
+        </div>
+        <div class="col home-data">
+            <h5>Total Recovered</h5>
+            <span>{{totalRecovered}} </span>
+        </div>
+        <div class="col home-data">
+            <h5>Total Active </h5>
+            <span>{{ totalActive }} </span>
+        </div>
+    </div>
+</div>
