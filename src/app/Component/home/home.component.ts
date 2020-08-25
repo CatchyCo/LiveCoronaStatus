@@ -55,32 +55,34 @@ export class HomeComponent implements OnInit {
 
     this.globalData.forEach(cs => {
       let value: number;
-      console.log(cs);
-      if (caseType == 'Confirm')
-        if (cs.totalConfirmCase > 2000)
+      if (caseType == 'Confirm') {
+        if (cs.totalConfirmCase > 2000) {
           value = cs.totalConfirmCase
+      }
+        }
 
-      if (caseType == 'Active')
-        if (cs.active > 2000)
+      if (caseType === 'Active') {
+        if (cs.active > 2000) {
           value = cs.active
-      if (caseType == 'Death')
-        if (cs.totalDeath > 1000)
+      }
+        }
+      if (caseType === 'Death') {
+        if (cs.totalDeath > 1000) {
           value = cs.totalDeath
-
-      if (caseType == 'Recovered')
-        if (cs.totalRecover > 2000)
+      }
+        }
+      if (caseType === 'Recovered') {
+        if (cs.totalRecover > 2000) {
           value = cs.totalRecover
-
+      }
+        }
       this.datatable.push([
         cs.countryName, value
       ])
-
       this.datatable2.push([
         cs.countryName, value
       ])
-
     })
-    console.log(this.datatable);
 
   }
   updateChart(value) {

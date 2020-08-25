@@ -14,7 +14,22 @@ export class CountriesComponent implements OnInit {
   totalRecovered = 0;
   totalActive = 0;
   globalData;
+  loading = true;
   countrie = [];
+  dataPie = [];
+  dataCol = [];
+
+  chart = {
+    pieChart: "PieChart",
+    colChart: "ColumnChart",
+    height: 500,
+    options: {
+      animation: {
+        duration: 500,
+        easing: 'in',
+      },
+    }
+  }
 
   constructor(public liveDataService: LiveDataServiceService) { }
   ngOnInit(): void {
@@ -32,8 +47,34 @@ export class CountriesComponent implements OnInit {
             }
           })
           this.updateValue('Afghanistan');
+          this.initChart('Afghanistan');
+
+        },
+        complete: () => {
+          this.loading = false;
         }
       });
+  }
+
+  initChart(value) {
+    this.dataPie = [];
+    this.dataCol = [];
+    this.globalData.forEach(country => {
+      if (country.countryName) {
+        console.log(country.countryName);
+        if (country.countryName === value) {
+          this.dataPie.push(['Confirm', country.totalConfirmCase]),
+            this.dataPie.push(['Death', country.totalDeath]),
+            this.dataPie.push(['Active', country.totalConfirmCase]),
+            this.dataPie.push(['Recovered', country.totalRecerver]),
+            this.dataCol.push(['Confirm', country.totalConfirmCase]),
+            this.dataCol.push(['Death', country.totalDeath]),
+            this.dataCol.push(['Active', country.totalConfirmCase]),
+            this.dataCol.push(['Recovered', country.totalRecerver])
+        }
+      }
+
+    })
   }
 
   updateValue(value) {
@@ -44,6 +85,7 @@ export class CountriesComponent implements OnInit {
         this.totalDeathCases = data['totalDeath'];
         this.totalRecovered = data['totalRecover'];
         this.totalActive = data['active'];
+        this.initChart(value);
       }
 
     });
