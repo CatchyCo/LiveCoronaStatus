@@ -12,8 +12,8 @@ import { Observable } from 'rxjs';
 })
 export class LiveDataServiceService {
 
-  globalDataURL = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/08-27-2020.csv';
-  globalDataURLfinal = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/';
+  // globalDataURL = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/08-27-2020.csv';
+  globalDataURL = 'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/';
   row = {};
   months = ['Jan', 'Feb', 'Mar', 'Apr', 'May',
     'Jun', 'Jul', 'Aug', 'Sep', 'Oct',
@@ -26,26 +26,21 @@ export class LiveDataServiceService {
   getGlobalData(): Observable<any> {
 
     const date = new Date().toDateString();
-
     let monthInWord = new Date().toDateString().split(' ')[1];
-
-    let monthNumber = this.months.indexOf(monthInWord) + 1;
-
+    let monthNumber = this.months.indexOf(monthInWord);
     let finalYear = new Date().toDateString().split(' ')[3];
-
     if (date.split(' ')[2].length % 10 == 0) {
       this.day = '0' + date.split(' ')[2].length % 10;
     }
 
     if (monthNumber.toString().length == 1) {
-       this.finalMonth = '0' + monthNumber.toString();
-       monthNumber = this.finalMonth;
+      this.finalMonth = '0' + monthNumber.toString();
+      monthNumber = this.finalMonth;
     }
 
-    let finalDate= (monthNumber+'-'+this.day+'-'+finalYear+'.csv');
-    console.log((this.globalDataURLfinal+finalDate) == this.globalDataURL);
-
-
+    let finalDate = (monthNumber + '-' + this.day + '-' + finalYear + '.csv');
+    this.globalDataURL = this.globalDataURL + finalDate;
+    console.log(this.globalDataURL);
     return this.http.get(this.globalDataURL, { responseType: 'text' }).pipe(
 
       map(result => {
